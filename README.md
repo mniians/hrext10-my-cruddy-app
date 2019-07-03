@@ -13,3 +13,15 @@ Create Read Update and Delete framework using JS
  ### Advanced Reqs
 - [ ] update/delete column
 - [ ] button disabling when input values are invalid
+
+Basketball stats app
+
+add player stats for your team
+
+creates objects for each player and their stats
+
+ranks players by stats
+
+ability to update player stats
+
+ability to compare players?

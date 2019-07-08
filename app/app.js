@@ -5,7 +5,23 @@
 - [ ] How to modify data? (update action, delete action)
 
 */
+//My app's functions
+var height = $('.height-input').val();
+var weight = $('.weight-input').val();
+var points = $('.points-input').val();
+var rebounds = $('.rebounds-input').val();
+var assists = $('.assists-input').val();
+var steals = $('.steals-input').val();
 
+var stats = {
+  height: height,
+  weight: weight,
+  PPG: points,
+  RPG: rebounds,
+  APG: assists,
+  SPG: steals
+}
+console.log(stats)
 //localStorage functions
 var createItem = function(key, value) {
   return window.localStorage.setItem(key, value);
@@ -41,12 +57,17 @@ var getKeyInput = function() {
 }
 
 var getValueInput = function() {
-  return $('.value').val();
+  return $('.height-input').val();
 }
 
 var resetInputs = function() {
   $('.key').val('');
-  $('.value').val('');
+  $('.height-input').val('');
+  $('.weight-input').val('');
+  $('.points-input').val('');
+  $('.rebounds-input').val('');
+  $('.assists-input').val('');
+  $('.steals-input').val('');
 }
 
 $(document).ready(function() {

@@ -18,3 +18,10 @@ th {
 label {
   text-decoration: underline;
 }
+
+.header {
+	display: flex;
+	justify-content: center;
+	font-size: 100px;
+	
+}

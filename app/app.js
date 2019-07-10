@@ -6,22 +6,22 @@
 
 */
 //My app's functions
-var height = $('.height-input').val();
-var weight = $('.weight-input').val();
-var points = $('.points-input').val();
-var rebounds = $('.rebounds-input').val();
-var assists = $('.assists-input').val();
-var steals = $('.steals-input').val();
+// var height = $('.height-input').val();
+// var weight = $('.weight-input').val();
+// var points = $('.points-input').val();
+// var rebounds = $('.rebounds-input').val();
+// var assists = $('.assists-input').val();
+// var steals = $('.steals-input').val();
 
-var stats = {
-  height: height,
-  weight: weight,
-  PPG: points,
-  RPG: rebounds,
-  APG: assists,
-  SPG: steals
-}
-console.log(stats)
+// var stats = {
+//   height: height,
+//   weight: weight,
+//   PPG: points,
+//   RPG: rebounds,
+//   APG: assists,
+//   SPG: steals
+// }
+
 //localStorage functions
 var createItem = function(key, value) {
   return window.localStorage.setItem(key, value);
@@ -39,12 +39,18 @@ var clearDatabase = function() {
   return window.localStorage.clear();
 }
 
+var statsContents = function(statObj) {
+  for (let key in statObj) {
+
+  }
+}
+
 var showDatabaseContents = function() {
   $('tbody').html('');
 
   for (var i = 0; i < window.localStorage.length; i++) {
     var key = window.localStorage.key(i);
-    $('tbody').append(`<tr><td>${key}</td><td>${window.localStorage.getItem(key)}</td></tr>`)
+    $('tbody').append(`<tr><td>${key}</td></tr>`)
   }
 }
 
@@ -57,7 +63,17 @@ var getKeyInput = function() {
 }
 
 var getValueInput = function() {
-  return $('.height-input').val();
+  //return $('.height-input').val();
+  var height = parseInt($('.height-input').val());
+  var weight = parseInt($('.weight-input').val());
+  var points = parseInt($('.points-input').val());
+  var rebounds = parseInt($('.rebounds-input').val());
+  var assists = parseInt($('.assists-input').val());
+  var steals = parseInt($('.steals-input').val());
+
+  var stats = {height: height, weight: weight, PPG: points, RPG: rebounds, APG: assists, SPG: steals}
+
+ return JSON.stringify(stats);
 }
 
 var resetInputs = function() {
@@ -72,7 +88,6 @@ var resetInputs = function() {
 
 $(document).ready(function() {
   showDatabaseContents();
-
   $('.create').click(function() {
     if (getKeyInput() !== '' && getValueInput() !== '') {
       if (keyExists(getKeyInput())) {

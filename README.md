@@ -25,3 +25,7 @@ ranks players by stats
 ability to update player stats
 
 ability to compare players?
+
+Maybe It's better to create a scouting app? the app will take in an object with the stats
+of players, so the stats can be created, updated, or deleted once a player becomes unavailable.
+It would be used to compare players.

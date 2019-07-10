@@ -40,9 +40,7 @@ var clearDatabase = function() {
 }
 
 var statsContents = function(statObj) {
-  for (let key in statObj) {
-
-  }
+  
 }
 
 var showDatabaseContents = function() {
@@ -50,7 +48,9 @@ var showDatabaseContents = function() {
 
   for (var i = 0; i < window.localStorage.length; i++) {
     var key = window.localStorage.key(i);
-    $('tbody').append(`<tr><td>${key}</td></tr>`)
+    var statObj = JSON.parse(window.localStorage.getItem(key))
+    console.log(statObj)
+    $('tbody').append(`<tr><td>${key}</td><td>${statObj.height}</td><td>${statObj.weight}</td><td>${statObj.PPG}</td><td>${statObj.RPG}</td><td>${statObj.APG}</td><td>${statObj.SPG}</td></tr>`)
   }
 }
 

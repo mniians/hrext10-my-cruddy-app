@@ -10,6 +10,11 @@ inputs (border swag)
 
 https://getbootstrap.com/docs/4.3/getting-started/introduction/
 */
+body {
+  background-color: #7d5300;
+  background-image: url(/Users/mrmyers/HREXT10/hrext10-my-cruddy-app/background.jpg);
+  /*background-image: url("https://www.transparenttextures.com/patterns/basketball.png");*/
+}
 
 th {
   text-decoration: underline;
@@ -19,9 +24,20 @@ label {
   text-decoration: underline;
 }
 
-.header {
-	display: flex;
-	justify-content: center;
-	font-size: 100px;
-	
+header {
+  color:white;
+  font-family: 'Bree Serif', serif;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.table-delete {
+  border-radius: 5px;
+
+}
+
+.table-delete:hover {
+	background-color: gray;
 }

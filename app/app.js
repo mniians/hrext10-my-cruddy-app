@@ -50,7 +50,7 @@ var showDatabaseContents = function() {
     var key = window.localStorage.key(i);
     var statObj = JSON.parse(window.localStorage.getItem(key))
     console.log(statObj)
-    $('tbody').append(`<tr><td>${key}</td><td>${statObj.height}</td><td>${statObj.weight}</td><td>${statObj.PPG}</td><td>${statObj.RPG}</td><td>${statObj.APG}</td><td>${statObj.SPG}</td></tr>`)
+    $('tbody').append(`<tr><td>${key}</td><td>${statObj.height}</td><td>${statObj.weight}</td><td>${statObj.PPG}</td><td>${statObj.RPG}</td><td>${statObj.APG}</td><td>${statObj.SPG}</td><td><button class="table-delete">Delete</button></td></tr>`)
   }
 }
 
@@ -64,7 +64,7 @@ var getKeyInput = function() {
 
 var getValueInput = function() {
   //return $('.height-input').val();
-  var height = parseInt($('.height-input').val());
+  var height = $('.height-input').val();
   var weight = parseInt($('.weight-input').val());
   var points = parseInt($('.points-input').val());
   var rebounds = parseInt($('.rebounds-input').val());
@@ -74,6 +74,10 @@ var getValueInput = function() {
   var stats = {height: height, weight: weight, PPG: points, RPG: rebounds, APG: assists, SPG: steals}
 
  return JSON.stringify(stats);
+}
+
+var changeStatObj = function() {
+
 }
 
 var resetInputs = function() {

@@ -49,8 +49,7 @@ var showDatabaseContents = function() {
   for (var i = 0; i < window.localStorage.length; i++) {
     var key = window.localStorage.key(i);
     var statObj = JSON.parse(window.localStorage.getItem(key))
-    console.log(statObj)
-    $('tbody').append(`<tr><td>${key}</td><td>${statObj.height}</td><td>${statObj.weight}</td><td>${statObj.PPG}</td><td>${statObj.RPG}</td><td>${statObj.APG}</td><td>${statObj.SPG}</td><td><button class="table-delete">Delete</button></td></tr>`)
+    $('tbody').append(`<tr><td>${key}</td><td>${statObj.height}</td><td>${statObj.weight}</td><td>${statObj.PPG}</td><td>${statObj.RPG}</td><td>${statObj.APG}</td><td>${statObj.SPG}</td><td><button class="table-delete">Delete</button></td></tr>`);
   }
 }
 
@@ -146,5 +145,10 @@ $(document).ready(function() {
       clearDatabase();
       showDatabaseContents();
     }
-  })
+  });
+
+  $('tbody').on('click', 'button', function() { 
+    deleteItem(event.path[2].children[0].innerText);
+    showDatabaseContents();
+  });
 })

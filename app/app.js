@@ -5,22 +5,7 @@
 - [ ] How to modify data? (update action, delete action)
 
 */
-//My app's functions
-// var height = $('.height-input').val();
-// var weight = $('.weight-input').val();
-// var points = $('.points-input').val();
-// var rebounds = $('.rebounds-input').val();
-// var assists = $('.assists-input').val();
-// var steals = $('.steals-input').val();
 
-// var stats = {
-//   height: height,
-//   weight: weight,
-//   PPG: points,
-//   RPG: rebounds,
-//   APG: assists,
-//   SPG: steals
-// }
 
 //localStorage functions
 var createItem = function(key, value) {
@@ -49,7 +34,7 @@ var showDatabaseContents = function() {
   for (var i = 0; i < window.localStorage.length; i++) {
     var key = window.localStorage.key(i);
     var statObj = JSON.parse(window.localStorage.getItem(key))
-    $('tbody').append(`<tr><td>${key}</td><td>${statObj.height}</td><td>${statObj.weight}</td><td>${statObj.PPG}</td><td>${statObj.RPG}</td><td>${statObj.APG}</td><td>${statObj.SPG}</td><td><button class="table-delete">Delete</button></td></tr>`);
+    $('tbody').append(`<tr><td>${key}</td><td>${statObj.home}</td><td>${statObj.height}</td><td>${statObj.weight}lbs</td><td>${statObj.PPG}</td><td>${statObj.RPG}</td><td>${statObj.APG}</td><td>${statObj.SPG}</td><td><button class="table-delete">Delete</button></td></tr>`);
   }
 }
 
@@ -63,14 +48,15 @@ var getKeyInput = function() {
 
 var getValueInput = function() {
   //return $('.height-input').val();
+  var home = $('.home-input').val()
   var height = $('.height-input').val();
-  var weight = parseInt($('.weight-input').val());
-  var points = parseInt($('.points-input').val());
-  var rebounds = parseInt($('.rebounds-input').val());
-  var assists = parseInt($('.assists-input').val());
-  var steals = parseInt($('.steals-input').val());
+  var weight = Number($('.weight-input').val());
+  var points = Number($('.points-input').val());
+  var rebounds = Number($('.rebounds-input').val());
+  var assists = Number($('.assists-input').val());
+  var steals = Number($('.steals-input').val());
 
-  var stats = {height: height, weight: weight, PPG: points, RPG: rebounds, APG: assists, SPG: steals}
+  var stats = {home: home, height: height, weight: weight, PPG: points, RPG: rebounds, APG: assists, SPG: steals}
 
  return JSON.stringify(stats);
 }
@@ -81,6 +67,7 @@ var changeStatObj = function() {
 
 var resetInputs = function() {
   $('.key').val('');
+  $('.home').val('');
   $('.height-input').val('');
   $('.weight-input').val('');
   $('.points-input').val('');
@@ -101,7 +88,7 @@ $(document).ready(function() {
       } else {
         createItem(getKeyInput(), getValueInput());
         showDatabaseContents();
-        resetInputs();
+        //resetInputs();
       }
     } else  {
       alert('key and value must not be blank');
@@ -146,9 +133,11 @@ $(document).ready(function() {
       showDatabaseContents();
     }
   });
-
+  //this button deletes the key from the table
   $('tbody').on('click', 'button', function() { 
     deleteItem(event.path[2].children[0].innerText);
     showDatabaseContents();
   });
+
+
 })

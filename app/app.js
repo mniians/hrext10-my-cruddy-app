@@ -7,6 +7,8 @@
 */
 
 
+
+
 //localStorage functions
 var createItem = function(key, value) {
   return window.localStorage.setItem(key, value);
@@ -16,8 +18,8 @@ var updateItem = function(localStorageKey, rowObject) {
   var oldValues = JSON.parse(window.localStorage.getItem(localStorageKey));
   var newValues = JSON.parse(rowObject);
   //checks if old stats are defined, if new stats aren't, the old stats are displayed
-  for(var key in newValues){
-    if(newValues[key] === "" && oldValues[key]){
+  for (var key in newValues) {
+    if (newValues[key] == ""  && oldValues[key]) {
       newValues[key] = oldValues[key]
     }
   }
@@ -65,20 +67,15 @@ var getKeyInput = function() {
 var getValueInput = function() {
   var home = $('.home-input').val();
   var height = $('.height-input').val();
-  var weight = Number($('.weight-input').val());
-  var points = Number($('.points-input').val());
-  var rebounds = Number($('.rebounds-input').val());
-  var assists = Number($('.assists-input').val());
-  var steals = Number($('.steals-input').val());
+  var weight = $('.weight-input').val();
+  var points = $('.points-input').val();
+  var rebounds = $('.rebounds-input').val();
+  var assists = $('.assists-input').val();
+  var steals = $('.steals-input').val();
 
   var stats = {home: home, height: height, weight: weight, PPG: points, RPG: rebounds, APG: assists, SPG: steals}
 
  return JSON.stringify(stats);
-}
-
-var changeStatObj = function() {
-  var oldInfo = window.localstorage.getItem(key)
-
 }
 
 var resetInputs = function() {

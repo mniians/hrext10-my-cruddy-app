@@ -12,8 +12,18 @@ var createItem = function(key, value) {
   return window.localStorage.setItem(key, value);
 }
 
-var updateItem = function(key, value) {
-  return window.localStorage.setItem(key, value);
+var updateItem = function(localStorageKey, rowObject) {
+  var oldValues = JSON.parse(window.localStorage.getItem(localStorageKey));
+  var newValues = JSON.parse(rowObject);
+  //checks if old stats are defined, if new stats aren't, the old stats are displayed
+  for(var key in newValues){
+    if(newValues[key] === "" && oldValues[key]){
+      newValues[key] = oldValues[key]
+    }
+  }
+
+  rowObjectString = JSON.stringify(newValues);  
+  return window.localStorage.setItem(localStorageKey, rowObjectString);
 }
 
 var deleteItem = function(key) {
@@ -24,8 +34,14 @@ var clearDatabase = function() {
   return window.localStorage.clear();
 }
 
-var statsContents = function(statObj) {
-  
+var statsContents = function() {
+  for (let key in stats) {
+    if (stats[key] === undefined) {
+      continue;
+    } else {
+      return key.val();
+    }
+  }
 }
 
 var showDatabaseContents = function() {
@@ -34,7 +50,7 @@ var showDatabaseContents = function() {
   for (var i = 0; i < window.localStorage.length; i++) {
     var key = window.localStorage.key(i);
     var statObj = JSON.parse(window.localStorage.getItem(key))
-    $('tbody').append(`<tr><td>${key}</td><td>${statObj.home}</td><td>${statObj.height}</td><td>${statObj.weight}lbs</td><td>${statObj.PPG}</td><td>${statObj.RPG}</td><td>${statObj.APG}</td><td>${statObj.SPG}</td><td><button class="table-delete">Delete</button></td></tr>`);
+    $('tbody').append(`<tr><td>${key}</td><td>${statObj.home}</td><td>${statObj.height}</td><td>${statObj.weight} lbs</td><td>${statObj.PPG}</td><td>${statObj.RPG}</td><td>${statObj.APG}</td><td>${statObj.SPG}</td><td><button class="table-delete">Delete</button></td></tr>`);
   }
 }
 
@@ -47,8 +63,7 @@ var getKeyInput = function() {
 }
 
 var getValueInput = function() {
-  //return $('.height-input').val();
-  var home = $('.home-input').val()
+  var home = $('.home-input').val();
   var height = $('.height-input').val();
   var weight = Number($('.weight-input').val());
   var points = Number($('.points-input').val());
@@ -62,12 +77,13 @@ var getValueInput = function() {
 }
 
 var changeStatObj = function() {
+  var oldInfo = window.localstorage.getItem(key)
 
 }
 
 var resetInputs = function() {
   $('.key').val('');
-  $('.home').val('');
+  $('.home-input').val('');
   $('.height-input').val('');
   $('.weight-input').val('');
   $('.points-input').val('');
@@ -88,7 +104,7 @@ $(document).ready(function() {
       } else {
         createItem(getKeyInput(), getValueInput());
         showDatabaseContents();
-        //resetInputs();
+        resetInputs();
       }
     } else  {
       alert('key and value must not be blank');

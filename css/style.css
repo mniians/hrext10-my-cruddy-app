@@ -33,6 +33,14 @@ header {
 
 }
 
+.description {
+	color: white;
+	font-family: 'Bree Serif', serif;
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+}
+
 .table-delete {
   border-radius: 5px;
 
